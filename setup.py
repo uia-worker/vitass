@@ -2,7 +2,7 @@ from setuptools import (setup, find_packages)
 from vitass import (__VERSION__, __AUTHOR__, __AUTHOR_EMAIL__)
 
 def get_requirements():
-    return open('requirements.txt'.read().splitlines()
+    return open('requirements.txt').read().splitlines()
 
 
 setup(
