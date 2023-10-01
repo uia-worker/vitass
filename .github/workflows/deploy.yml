@@ -15,8 +15,14 @@ jobs:
           username: ${{secrets.SSH_USERNAME}}
 
           script: |
-            rm -rf test
-            mkdir test
-            cd test
+            rm -rf build
+            mkdir build
+            cd build
             git clone git@github.com:uia-worker/vitass.git
+            cd vitass 
+            sudo docker stop vitass-container-v001
+            sudo docker rm vitass-container-v001
+            sudo docker image rm designit-vitass-demo-v001
+            sudo docker build -t design-vitass-demo-v001 .
+            sudo docker run -d -p 8000:8000 --name vitass-container-v001 designit-vitass-demo-v001
             echo 'Deployment successful to digital ocean'
