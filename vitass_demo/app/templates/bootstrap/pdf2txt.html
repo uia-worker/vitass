@@ -1,0 +1,8 @@
+<!-- fileuploads/templates/upload_file.html -->
+{% extends "bootstrap/base.html" %}
+{% load static %}
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+{% block content %}
+    <p>{{ first_page }}</p>  
+{% endblock %}
