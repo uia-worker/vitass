@@ -1,2 +1,4 @@
 Django>=4.2 # in martor bigger than equal to 3.2 is used
 gunicorn
+pdfplumber
+pandas
