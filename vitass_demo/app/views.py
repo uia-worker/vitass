@@ -17,13 +17,17 @@ from django.core.files import File
 def home_redirect_view(request):
     return redirect("simple_form")
 
-
 def simple_form_view(request):
     form = SimpleForm()
     context = {"form": form, "title": "Simple Form"}
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
     return render(request, "%s/form.html" % theme, context)
 
+def simple_test_view(request):
+    form = SimpleTest()
+    context = {"test": form, "title": "Simple Test"}
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    return render('request, "%s/test.html" % theme, context')
 
 def upload_file_view(request):
     if request.method == 'POST':
