@@ -30,4 +30,5 @@ urlpatterns = [
     path("upload/", upload_file_view, name='upload_file'),
     path("download/<int:file_id>/", views.download_file, name='download_file'),
     path("pdf2txt/", views.read_file, name='read_file'),
+    path("test/", views.simple_test_view, name="simple_test"),
 ]

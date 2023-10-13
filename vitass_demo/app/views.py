@@ -11,6 +11,7 @@ from django.conf import settings
 # from app.models import Post
 
 from app.forms import SimpleForm
+from app.forms import SimpleTestForm
 import pdfplumber
 from django.core.files import File
 
@@ -24,10 +25,10 @@ def simple_form_view(request):
     return render(request, "%s/form.html" % theme, context)
 
 def simple_test_view(request):
-    form = SimpleTest()
-    context = {"test": form, "title": "Simple Test"}
+    form = SimpleTestForm() # definert i forms.py
+    context = {"form": form, "title": "Simple Test"}
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    return render('request, "%s/test.html" % theme, context')
+    return render(request, "%s/test.html" % theme, context)
 
 def upload_file_view(request):
     if request.method == 'POST':
