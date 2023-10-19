@@ -18,6 +18,25 @@ from django.core.files import File
 def home_redirect_view(request):
     return redirect("simple_form")
 
+def say_hello2(request):
+    return HttpResponse('Hello World')
+
+def say_hello(request):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    return render(request, "%s/hello.html" % theme, {"name": "mads"})
+
+#def pass_request(request):
+#    print("the request method is:", request.method)
+#    print("the POST data is:", request.POST)
+#
+#    form = SimpleForm()
+
+#def pass_request(request):
+    #theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    #form = SimpleForm(request.POST)
+    #return render(request, '/test.html', {'form':form})
+    #return HttpResponse(request, "Melding")
+
 def simple_form_view(request):
     form = SimpleForm()
     context = {"form": form, "title": "Simple Form"}

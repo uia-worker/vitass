@@ -22,7 +22,9 @@ from app.views import (
     home_redirect_view,
     simple_form_view,
     upload_file_view,
-    simple_test_view
+    simple_test_view,
+    say_hello,
+    say_hello2,
 )
 
 urlpatterns = [
@@ -32,4 +34,7 @@ urlpatterns = [
     path("download/<int:file_id>/", views.download_file, name='download_file'),
     path("pdf2txt/", views.read_file, name='read_file'),
     path("test/", views.simple_test_view, name="simple_test"),
+    path("say_hello/", views.say_hello, name='say_hello'),
+    path("say_hello2/", views.say_hello2, name='say_hello2')
+    
 ]
