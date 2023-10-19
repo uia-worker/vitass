@@ -22,7 +22,7 @@ from app.views import (
     home_redirect_view,
     simple_form_view,
     upload_file_view,
-    views.simple_test_view
+    simple_test_view
 )
 
 urlpatterns = [
