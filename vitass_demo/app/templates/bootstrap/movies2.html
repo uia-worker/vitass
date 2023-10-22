@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html" %}
+{% load static %}
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+<h1>Movies</h1>
+<ul>
+{% for movie in movies %}
+    <li><a href="http://localhost:8000/{{movie.id}}">{{movie.title}}</li></a>
+{% endfor %}
+</ul>
+
+
+
+<a href="/add">Add a movie</a>
+
+
+
+
+{% endblock %}

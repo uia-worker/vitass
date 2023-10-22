@@ -35,6 +35,12 @@ urlpatterns = [
     path("pdf2txt/", views.read_file, name='read_file'),
     path("test/", views.simple_test_view, name="simple_test"),
     path("say_hello/", views.say_hello, name='say_hello'),
-    path("say_hello2/", views.say_hello2, name='say_hello2')
+    path("say_hello2/", views.say_hello2, name='say_hello2'),
+    path("movies/", views.movies, name="movies"),
+    path("movies2/", views.movies2, name="movies2"),
+    path("movies3/", views.movies3, name="movies3"),
+    path("<int:id>/", views.detail, name="detail"),
+    path("add/", views.add, name="add"),
+    path("delete/<int:id>", views.delete, name="delete")
     
 ]

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import UploadedFile
 from .forms import UploadFileForm
 from django.conf import settings
@@ -14,9 +14,51 @@ from app.forms import SimpleForm
 from app.forms import SimpleTestForm
 import pdfplumber
 from django.core.files import File
+from .models import Movie
+
+
+data2 = {"movies" : Movie.objects.all()}
+
+data = {
+    "movies": [
+        {
+            "id":5,
+            "title":"Jaws",
+            "year":1986,
+        },
+        {
+            "id":6,
+            "title":"Sharkando",
+            "year":1990,
+
+        },
+        {
+            "id":7,
+            "title":"The Meg",
+            "year":2000,
+
+        }
+
+
+
+    ]
+}
 
 def home_redirect_view(request):
     return redirect("simple_form")
+
+def movies(request):
+    #theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    return render(request, 'bootstrap/movies.html', data)
+
+def movies2(request):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = Movie.objects.all()
+    return render(request, "%s/movies2.html" % theme, {'movies':data})
+
+def movies3(request):
+    data = Movie.objects.all()
+    return render(request, "bootstrap/movies3.html", {'movies': data})
 
 def say_hello2(request):
     return HttpResponse('Hello World')
@@ -24,6 +66,25 @@ def say_hello2(request):
 def say_hello(request):
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
     return render(request, "%s/hello.html" % theme, {"name": "mads"})
+
+def detail(request, id):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = Movie.objects.get(pk=id)
+    return render(request, "%s/detail.html" % theme, {"movie": data})
+
+def add(request):
+    title = request.POST.get('title')
+    year = request.POST.get('year')
+
+    if title and year:
+        movie = Movie(title=title, year=year)
+        movie.save()
+        return HttpResponseRedirect('/movies2')
+    return render(request, 'bootstrap/add.html')
+
+def delete(request, id):
+    Movie.objects.get(pk=id).delete()
+    return HttpResponseRedirect('/movies2')
 
 #def pass_request(request):
 #    print("the request method is:", request.method)
