@@ -15,6 +15,7 @@ from app.forms import SimpleTestForm
 import pdfplumber
 from django.core.files import File
 from .models import Movie
+from. models import User
 
 
 data2 = {"movies" : Movie.objects.all()}
@@ -81,6 +82,20 @@ def add(request):
         movie.save()
         return HttpResponseRedirect('/movies2')
     return render(request, 'bootstrap/add.html')
+
+def register(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    email = request.POST.get('email')
+    telephone = request.POST.get('telephone')
+    name = request.POST.get('name')
+
+
+    if username and password and email and name and telephone:
+        user = User(username=username, password=password, email=email, name=name)
+        user.save()
+        return HttpResponseRedirect('/movies2')
+    return render(request, 'bootstrap/form.html')
 
 def delete(request, id):
     Movie.objects.get(pk=id).delete()

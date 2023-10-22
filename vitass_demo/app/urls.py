@@ -41,6 +41,7 @@ urlpatterns = [
     path("movies3/", views.movies3, name="movies3"),
     path("<int:id>/", views.detail, name="detail"),
     path("add/", views.add, name="add"),
-    path("delete/<int:id>", views.delete, name="delete")
+    path("delete/<int:id>", views.delete, name="delete"),
+    path("form/", views.register, name="register"),
     
 ]
