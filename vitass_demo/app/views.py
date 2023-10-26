@@ -10,84 +10,29 @@ from django.conf import settings
 # from app.forms import SimpleForm, PostForm
 # from app.models import Post
 
-from app.forms import SimpleForm
-from app.forms import SimpleTestForm
 import pdfplumber
 from django.core.files import File
-from .models import Movie
 from. models import User
 from. models import Prompt
 
-
-data2 = {"movies" : Movie.objects.all()}
-
-data = {
-    "movies": [
-        {
-            "id":5,
-            "title":"Jaws",
-            "year":1986,
-        },
-        {
-            "id":6,
-            "title":"Sharkando",
-            "year":1990,
-
-        },
-        {
-            "id":7,
-            "title":"The Meg",
-            "year":2000,
-
-        }
-
-
-
-    ]
-}
+def write(request, id):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = Prompt.objects.get(pk=id)
+    #typingPrint(data)
+    return render(request, "%s/write.html" % theme, {"prompt": data})
 
 def home_redirect_view(request):
-    return redirect("simple_form")
-
-def movies(request):
-    #theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    return render(request, 'bootstrap/movies.html', data)
-
-def movies2(request):
-    theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    data = Movie.objects.all()
-    return render(request, "%s/movies2.html" % theme, {'movies':data})
-
-def movies3(request):
-    data = Movie.objects.all()
-    return render(request, "bootstrap/movies3.html", {'movies': data})
-
-def say_hello2(request):
-    return HttpResponse('Hello World')
-
-def say_hello(request):
-    theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    return render(request, "%s/hello.html" % theme, {"name": "mads"})
-
-def detail(request, id):
-    theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    data = Movie.objects.get(pk=id)
-    return render(request, "%s/detail.html" % theme, {"movie": data})
+    return redirect("/promptform")
 
 def promptdetail(request, id):
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
     data = Prompt.objects.get(pk=id)
     return render(request, "%s/promptdetail.html" % theme, {"prompt": data})
 
-def add(request):
-    title = request.POST.get('title')
-    year = request.POST.get('year')
-
-    if title and year:
-        movie = Movie(title=title, year=year)
-        movie.save()
-        return HttpResponseRedirect('/movies2')
-    return render(request, 'bootstrap/add.html')
+def userdetail(request, id):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = User.objects.get(pk=id)
+    return render(request, "%s/userdetail.html" % theme, {"user": data})
 
 def prompt(request):
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
@@ -116,36 +61,21 @@ def register(request):
     if username and password and email and name and telephone:
         user = User(username=username, password=password, email=email, name=name)
         user.save()
-        return HttpResponseRedirect('/movies2')
+        return HttpResponseRedirect('/user')
     return render(request, 'bootstrap/form.html')
 
-def delete(request, id):
-    Movie.objects.get(pk=id).delete()
-    return HttpResponseRedirect('/movies2')
-
-#def pass_request(request):
-#    print("the request method is:", request.method)
-#    print("the POST data is:", request.POST)
-#
-#    form = SimpleForm()
-
-#def pass_request(request):
-    #theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    #form = SimpleForm(request.POST)
-    #return render(request, '/test.html', {'form':form})
-    #return HttpResponse(request, "Melding")
-
-def simple_form_view(request):
-    form = SimpleForm()
-    context = {"form": form, "title": "Simple Form"}
+def user(request):
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    return render(request, "%s/form.html" % theme, context)
+    data = User.objects.all()
+    return render(request, "%s/user.html" % theme, {'users':data})
 
-def simple_test_view(request):
-    form = SimpleTestForm() # definert i forms.py
-    context = {"form": form, "title": "Simple Test"}
-    theme = getattr(settings, "VITASS_THEME", "bootstrap")
-    return render(request, "%s/test.html" % theme, context)
+def promptdelete(request, id):
+    Prompt.objects.get(pk=id).delete()
+    return HttpResponseRedirect('/prompt')
+
+def userdelete(request, id):
+    User.objects.get(pk=id).delete()
+    return HttpResponseRedirect('/user')
 
 def upload_file_view(request):
     if request.method == 'POST':
