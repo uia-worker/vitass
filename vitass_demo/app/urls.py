@@ -39,9 +39,12 @@ urlpatterns = [
     path("movies/", views.movies, name="movies"),
     path("movies2/", views.movies2, name="movies2"),
     path("movies3/", views.movies3, name="movies3"),
-    path("<int:id>/", views.detail, name="detail"),
+    path("movies/<int:id>/", views.detail, name="detail"),
     path("add/", views.add, name="add"),
     path("delete/<int:id>", views.delete, name="delete"),
     path("form/", views.register, name="register"),
+    path("prompt/", views.prompt, name="prompt"),
+    path("promptform/", views.promptform, name="promptform"),
+    path("prompts/<int:id>/", views.promptdetail, name="promptdetail"),
     
 ]

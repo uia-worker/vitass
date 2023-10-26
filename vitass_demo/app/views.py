@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import UploadedFile
+from .models import Prompt, UploadedFile
 from .forms import UploadFileForm
 from django.conf import settings
 # from django.contrib.auth.decorators import login_required
@@ -16,6 +16,7 @@ import pdfplumber
 from django.core.files import File
 from .models import Movie
 from. models import User
+from. models import Prompt
 
 
 data2 = {"movies" : Movie.objects.all()}
@@ -73,6 +74,11 @@ def detail(request, id):
     data = Movie.objects.get(pk=id)
     return render(request, "%s/detail.html" % theme, {"movie": data})
 
+def promptdetail(request, id):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = Prompt.objects.get(pk=id)
+    return render(request, "%s/promptdetail.html" % theme, {"prompt": data})
+
 def add(request):
     title = request.POST.get('title')
     year = request.POST.get('year')
@@ -82,6 +88,22 @@ def add(request):
         movie.save()
         return HttpResponseRedirect('/movies2')
     return render(request, 'bootstrap/add.html')
+
+def prompt(request):
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    data = Prompt.objects.all()
+    return render(request, "%s/prompt.html" % theme, {'prompts':data})
+
+def promptform(request):
+    navn = request.POST.get('navn')
+    tittel = request.POST.get('tittel')
+    tekst = request.POST.get('tekst')
+
+    if tittel and tekst and navn:
+        prompt = Prompt(tittel=tittel, tekst=tekst, navn=navn)
+        prompt.save()
+        return HttpResponseRedirect('/prompt')
+    return render(request, 'bootstrap/promptform.html')
 
 def register(request):
     username = request.POST.get('username')

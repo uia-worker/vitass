@@ -22,3 +22,11 @@ class User(models.Model):
 	def __str__(self):
 		return f'{self.username} {self.name} {self.password} {self.email} {self.telehpone}'
 
+class Prompt(models.Model):
+	navn = models.CharField(max_length=200)
+	tittel = models.CharField(max_length=200)
+	tekst = models.CharField(max_length=500)
+
+	def __str__(self):
+		return f'{self.navn} {self.tittel} {self.tekst}'
+
