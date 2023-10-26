@@ -1,9 +1,20 @@
+{% extends "bootstrap/base.html" %}
+{% load static %}
+{% block title %}{{ title }} :: {{ block.super }}{% endblock %}
 
 
-<p>{{prompt.navn}}</p>
-<p>{{prompt.tittel}}</p>
-<p>{{prompt.tekst}}</p>
+{% block content %}
+
+
+<p>Navn : {{prompt.navn}}</p>
+<p>Tittel: {{prompt.tittel}}</p>
+<p>Tekst: {{prompt.tekst}}</p>
 <a href = 'http://localhost:8000/delete/{{prompt.navn}}' > DELETE</a>
 <br>
-<a href = 'http://localhost:8000/test' > hjem</a>
+<a href = 'http://localhost:8000/test' > Hjem</a>
+<br>
+<a href = 'http://localhost:8000/prompt' > Tilbake</a>
 
+
+
+{% endblock %}
