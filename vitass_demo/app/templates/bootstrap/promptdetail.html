@@ -15,6 +15,30 @@
 <br>
 <a href = 'http://localhost:8000/prompt' > Tilbake</a>
 
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<p id="demo"></p>
+
+<script>
+var i = 0;
+var txt = "{{prompt.tekst}}";
+var speed = 50;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter()
+</script>
+
+</body>
+</html>
 
 
 {% endblock %}
