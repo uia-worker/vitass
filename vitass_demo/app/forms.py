@@ -15,3 +15,7 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadedFile
         fields = ["file"]
+
+
+class SimpleTestForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput())

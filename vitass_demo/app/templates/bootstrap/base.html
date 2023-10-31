@@ -4,6 +4,7 @@
   <title>{% block title %}Vitass{% endblock %}</title>
   <link href="{% static 'plugins/css/bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
   <style>.main-container {margin-top: 3em}</style>
+  
   {% block css %}{% endblock %}
 </head>
 <body>
@@ -21,9 +22,13 @@
               Velg Demo
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{% url 'simple_form' %}">Simple Form</a>
               <a class="dropdown-item" href="{% url 'upload_file' %}">Upload File</a> 
               <a class="dropdown-item" href="{% url 'read_file' %}">PDF til tekst</a>
+              <a class="dropdown-item" href="{% url 'prompt' %}">Prompts</a>
+              <a class="dropdown-item" href="{% url 'promptform' %}">Registrer ny promt</a>
+              <a class="dropdown-item" href="{% url 'user' %}">Brukere</a>
+              <a class="dropdown-item" href="{% url 'register' %}">Registrer ny bruker</a>
+              <a class="dropdown-item" href="http://localhost:8000/write/3">SKRIVEMASKIN FÅR IKKE DETTE TIL :/</a>
            </div>
           </li>
         </ul>
