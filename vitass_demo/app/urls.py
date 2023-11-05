@@ -38,5 +38,6 @@ urlpatterns = [
     path("users/<int:id>/", views.userdetail, name="userdetail"),
     path("userdelete/<int:id>/", views.userdelete, name="userdelete"),
     path("write/<int:id>", views.write, name="write"),
+    path("register/", views.registerPage, name="registerPage"),
     
 ]

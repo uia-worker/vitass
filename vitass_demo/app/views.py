@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Prompt, UploadedFile
 from .forms import UploadFileForm
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
 
@@ -12,8 +13,23 @@ from django.conf import settings
 
 import pdfplumber
 from django.core.files import File
-from. models import User
-from. models import Prompt
+from .models import User
+from .models import Prompt
+from .forms import CreateUserFrom
+
+
+def registerPage(request):
+    form = CreateUserFrom()
+
+
+    if request.method == 'POST':
+        form = CreateUserFrom(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    theme = getattr(settings, "VITASS_THEME", "bootstrap")
+    return render(request, "%s/register.html" % theme, context)
 
 def write(request, id):
     theme = getattr(settings, "VITASS_THEME", "bootstrap")
