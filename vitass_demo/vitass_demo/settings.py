@@ -26,6 +26,13 @@ SECRET_KEY = 'django-insecure-3^0fhdd8(597q$ca9cf#(8wj4r-^gtu$8k1qkink*0nh#17myz
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+#['localhost', "https://designit.cloud"]
+
+CSRF_TRUSTED_ORIGINS = ["https://designit.cloud", "https://localhost:8000", "https://localhost/media/uploadsuml-2.5.1-formal-17-12-05.pdf"]
+
+CSRF_COOKIE_SECURE = False
+
+#CSRF_FAILURE_VIEW = 
 
 
 # Application definition
@@ -71,6 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vitass_demo.wsgi.application'
+
 
 
 # Database

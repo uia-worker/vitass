@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
+from django.template import RequestContext
 
 # from app.forms import SimpleForm, PostForm
 # from app.models import Post
