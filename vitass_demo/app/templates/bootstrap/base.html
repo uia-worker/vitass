@@ -10,7 +10,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">Vitass</a>
+      <a class="navbar-brand" href="/">DesignIT - Vitass</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,7 +28,7 @@
               <a class="dropdown-item" href="{% url 'promptform' %}">Registrer ny promt</a>
               <a class="dropdown-item" href="{% url 'user' %}">Brukere</a>
               <a class="dropdown-item" href="{% url 'register' %}">Registrer ny bruker</a>
-              <a class="dropdown-item" href="http://localhost:8000/write/3">SKRIVEMASKIN FÅR IKKE DETTE TIL :/</a>
+              <a class="dropdown-item" href="{% url 'registerPage' %}">Registrer ny bruker til django db :/</a>
            </div>
           </li>
         </ul>
